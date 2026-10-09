@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node -e \"const fs=require('fs');fs.rmSync('frontend/.next',{recursive:true,force:true});fs.cpSync('.next','frontend/.next',{recursive:true});\"",
     "start": "next start",
     "lint": "next lint"
   },

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node -e \"const fs=require('fs');if(!process.env.DOCKER_BUILD){fs.rmSync('../.next',{recursive:true,force:true});fs.cpSync('.next','../.next',{recursive:true});fs.mkdirSync('frontend',{recursive:true});fs.rmSync('frontend/.next',{recursive:true,force:true});fs.cpSync('.next','frontend/.next',{recursive:true});}\"",
     "start": "next start",
     "lint": "next lint"
   },
