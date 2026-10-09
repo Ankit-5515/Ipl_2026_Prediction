@@ -40,9 +40,6 @@ jobs:
     if: github.event_name != 'schedule'
     name: Next.js TypeScript & Production Build
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: frontend
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -56,6 +53,8 @@ jobs:
         run: npm install
 
       - name: Type-check & Build Next.js App
+        env:
+          VERCEL: "1"
         run: npm run build
 
   keep-alive-ping:
