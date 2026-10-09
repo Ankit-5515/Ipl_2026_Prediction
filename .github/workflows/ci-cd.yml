@@ -1,0 +1,86 @@
+name: IPL 2026 CI/CD & Keep-Alive Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  # Scheduled cron every 14 minutes to ping /api/health and prevent Render/Railway free-tier cold starts
+  schedule:
+    - cron: "*/14 * * * *"
+  workflow_dispatch:
+
+jobs:
+  backend-ml-test:
+    if: github.event_name != 'schedule'
+    name: ML Pipeline & FastAPI Pytest Suite
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+          cache-dependency-path: backend/requirements.txt
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r backend/requirements.txt
+
+      - name: Train & Verify ML Model Artifact
+        run: python -m ml.train
+
+      - name: Run Pytest Unit & API Integration Tests
+        run: pytest -v
+
+  frontend-build:
+    if: github.event_name != 'schedule'
+    name: Next.js TypeScript & Production Build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Type-check & Build Next.js App
+        env:
+          NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL || 'http://localhost:8000' }}
+        run: npm run build
+
+  deploy-production:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    name: Trigger Cloud Deployment (Render + Vercel)
+    needs: [backend-ml-test, frontend-build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Render Backend Deploy Hook (if configured)
+        if: ${{ secrets.RENDER_DEPLOY_HOOK_URL != '' }}
+        run: curl -fsSL -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
+
+      - name: Trigger Vercel Frontend Deploy Hook (if configured)
+        if: ${{ secrets.VERCEL_DEPLOY_HOOK_URL != '' }}
+        run: curl -fsSL -X POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}"
+
+  keep-alive-ping:
+    if: github.event_name == 'schedule'
+    name: Free-Tier Cold Start Keep-Alive Ping
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Production /api/health Endpoint
+        if: ${{ vars.PRODUCTION_API_URL != '' }}
+        run: |
+          curl -fsSL "${{ vars.PRODUCTION_API_URL }}/api/health" || true

@@ -1,0 +1,3 @@
+"""IPL 2026 Machine Learning Package."""
+
+__version__ = "1.0.0"

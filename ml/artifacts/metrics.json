@@ -1,0 +1,336 @@
+{
+  "version": "1.0.0",
+  "trained_at": "2026-10-08T10:50:11.837687+00:00",
+  "selected_model": "Logistic Regression",
+  "selected_metrics": {
+    "model_name": "Logistic Regression",
+    "accuracy": 0.5413,
+    "f1_score": 0.5413,
+    "roc_auc": 0.5758,
+    "brier_score": 0.2465,
+    "log_loss": 0.6863,
+    "cv_accuracy_mean": 0.5298,
+    "cv_roc_auc_mean": 0.5411,
+    "confusion_matrix": [
+      [
+        118,
+        100
+      ],
+      [
+        100,
+        118
+      ]
+    ]
+  },
+  "models_compared": [
+    {
+      "model_name": "Logistic Regression",
+      "accuracy": 0.5413,
+      "f1_score": 0.5413,
+      "roc_auc": 0.5758,
+      "brier_score": 0.2465,
+      "log_loss": 0.6863,
+      "cv_accuracy_mean": 0.5298,
+      "cv_roc_auc_mean": 0.5411,
+      "confusion_matrix": [
+        [
+          118,
+          100
+        ],
+        [
+          100,
+          118
+        ]
+      ]
+    },
+    {
+      "model_name": "Random Forest",
+      "accuracy": 0.5688,
+      "f1_score": 0.5766,
+      "roc_auc": 0.5667,
+      "brier_score": 0.2473,
+      "log_loss": 0.6878,
+      "cv_accuracy_mean": 0.4983,
+      "cv_roc_auc_mean": 0.5087,
+      "confusion_matrix": [
+        [
+          120,
+          98
+        ],
+        [
+          90,
+          128
+        ]
+      ]
+    },
+    {
+      "model_name": "Gradient Boosting",
+      "accuracy": 0.5298,
+      "f1_score": 0.5221,
+      "roc_auc": 0.5415,
+      "brier_score": 0.2502,
+      "log_loss": 0.6936,
+      "cv_accuracy_mean": 0.5183,
+      "cv_roc_auc_mean": 0.5089,
+      "confusion_matrix": [
+        [
+          119,
+          99
+        ],
+        [
+          106,
+          112
+        ]
+      ]
+    },
+    {
+      "model_name": "XGBoost",
+      "accuracy": 0.5344,
+      "f1_score": 0.5418,
+      "roc_auc": 0.5713,
+      "brier_score": 0.246,
+      "log_loss": 0.685,
+      "cv_accuracy_mean": 0.5018,
+      "cv_roc_auc_mean": 0.5051,
+      "confusion_matrix": [
+        [
+          113,
+          105
+        ],
+        [
+          98,
+          120
+        ]
+      ]
+    },
+    {
+      "model_name": "Hybrid Ensemble (LR + RF + GBDT/XGB)",
+      "accuracy": 0.5757,
+      "f1_score": 0.5708,
+      "roc_auc": 0.5725,
+      "brier_score": 0.2462,
+      "log_loss": 0.6854,
+      "cv_accuracy_mean": 0.5229,
+      "cv_roc_auc_mean": 0.5217,
+      "confusion_matrix": [
+        [
+          128,
+          90
+        ],
+        [
+          95,
+          123
+        ]
+      ]
+    },
+    {
+      "model_name": "Legacy Notebook Baseline (Static One-Hot RF)",
+      "accuracy": 0.5092,
+      "f1_score": 0.5158,
+      "roc_auc": 0.5275,
+      "brier_score": 0.3041,
+      "log_loss": 1.0075,
+      "cv_accuracy_mean": 0.5092,
+      "cv_roc_auc_mean": 0.5275,
+      "confusion_matrix": [
+        [
+          54,
+          60
+        ],
+        [
+          47,
+          57
+        ]
+      ]
+    }
+  ],
+  "global_feature_importance": [
+    {
+      "feature": "team1_is_chasing",
+      "display_name": "Second Innings Chase Factor",
+      "importance": 0.1063,
+      "rf_importance": 0.0227,
+      "lr_weight": 0.2292
+    },
+    {
+      "feature": "overall_win_rate_diff",
+      "display_name": "Overall Win Rate Edge",
+      "importance": 0.0659,
+      "rf_importance": 0.0586,
+      "lr_weight": 0.0285
+    },
+    {
+      "feature": "elo_expected_team1",
+      "display_name": "Elo Win Expectancy",
+      "importance": 0.0581,
+      "rf_importance": 0.0597,
+      "lr_weight": 0.0571
+    },
+    {
+      "feature": "venue_win_rate_diff",
+      "display_name": "Venue Mastery Differential",
+      "importance": 0.0548,
+      "rf_importance": 0.0549,
+      "lr_weight": 0.0016
+    },
+    {
+      "feature": "team1_venue_win_rate",
+      "display_name": "Team 1 Venue Win Rate",
+      "importance": 0.0489,
+      "rf_importance": 0.0618,
+      "lr_weight": 0.0014
+    },
+    {
+      "feature": "chasing_advantage_for_team1",
+      "display_name": "Venue-Specific Toss & Chase Synergy",
+      "importance": 0.0485,
+      "rf_importance": 0.0529,
+      "lr_weight": 0.101
+    },
+    {
+      "feature": "elo_diff",
+      "display_name": "Elo Strength Differential",
+      "importance": 0.0479,
+      "rf_importance": 0.0573,
+      "lr_weight": 0.0422
+    },
+    {
+      "feature": "form_diff_last10",
+      "display_name": "Momentum Differential (Last 10)",
+      "importance": 0.047,
+      "rf_importance": 0.0347,
+      "lr_weight": 0.0577
+    },
+    {
+      "feature": "team2_venue_win_rate",
+      "display_name": "Team 2 Venue Win Rate",
+      "importance": 0.0467,
+      "rf_importance": 0.0597,
+      "lr_weight": 0.0014
+    },
+    {
+      "feature": "team1_home_advantage",
+      "display_name": "Team 1 Home Fortress Factor",
+      "importance": 0.0459,
+      "rf_importance": 0.0143,
+      "lr_weight": 0.0855
+    },
+    {
+      "feature": "team2_overall_win_rate",
+      "display_name": "Team 2 Career Win Rate",
+      "importance": 0.0446,
+      "rf_importance": 0.0529,
+      "lr_weight": 0.0204
+    },
+    {
+      "feature": "team2_home_advantage",
+      "display_name": "Team 2 Home Fortress Factor",
+      "importance": 0.0444,
+      "rf_importance": 0.0141,
+      "lr_weight": 0.0855
+    },
+    {
+      "feature": "team1_overall_win_rate",
+      "display_name": "Team 1 Career Win Rate",
+      "importance": 0.0378,
+      "rf_importance": 0.0502,
+      "lr_weight": 0.0204
+    },
+    {
+      "feature": "elo_team1",
+      "display_name": "Team 1 Elo Rating",
+      "importance": 0.0367,
+      "rf_importance": 0.0567,
+      "lr_weight": 0.0303
+    },
+    {
+      "feature": "elo_team2",
+      "display_name": "Team 2 Elo Rating",
+      "importance": 0.0359,
+      "rf_importance": 0.0534,
+      "lr_weight": 0.0303
+    },
+    {
+      "feature": "h2h_team1_win_rate",
+      "display_name": "Head-to-Head Dominance",
+      "importance": 0.0357,
+      "rf_importance": 0.0435,
+      "lr_weight": 0.0403
+    },
+    {
+      "feature": "venue_chase_win_rate",
+      "display_name": "Venue Chasing Bias",
+      "importance": 0.0251,
+      "rf_importance": 0.0529,
+      "lr_weight": 0.0
+    },
+    {
+      "feature": "team1_form_last10",
+      "display_name": "Team 1 Momentum (Last 10)",
+      "importance": 0.0248,
+      "rf_importance": 0.0205,
+      "lr_weight": 0.0414
+    },
+    {
+      "feature": "team2_form_last10",
+      "display_name": "Team 2 Momentum (Last 10)",
+      "importance": 0.0239,
+      "rf_importance": 0.0226,
+      "lr_weight": 0.0414
+    },
+    {
+      "feature": "venue_avg_target_runs",
+      "display_name": "Venue Average Par Target",
+      "importance": 0.0239,
+      "rf_importance": 0.0466,
+      "lr_weight": 0.0
+    },
+    {
+      "feature": "team2_form_last5",
+      "display_name": "Team 2 Recent Form (Last 5)",
+      "importance": 0.021,
+      "rf_importance": 0.0207,
+      "lr_weight": 0.0106
+    },
+    {
+      "feature": "h2h_matches_played",
+      "display_name": "Head-to-Head Experience",
+      "importance": 0.0205,
+      "rf_importance": 0.0373,
+      "lr_weight": 0.0
+    },
+    {
+      "feature": "form_diff_last5",
+      "display_name": "Recent Form Differential (Last 5)",
+      "importance": 0.0195,
+      "rf_importance": 0.0217,
+      "lr_weight": 0.0147
+    },
+    {
+      "feature": "team1_form_last5",
+      "display_name": "Team 1 Recent Form (Last 5)",
+      "importance": 0.0161,
+      "rf_importance": 0.0195,
+      "lr_weight": 0.0106
+    },
+    {
+      "feature": "team1_won_toss",
+      "display_name": "Toss Winner Advantage",
+      "importance": 0.0146,
+      "rf_importance": 0.007,
+      "lr_weight": 0.0486
+    },
+    {
+      "feature": "toss_decision_field",
+      "display_name": "Toss Decision (Field vs Bat)",
+      "importance": 0.0054,
+      "rf_importance": 0.0041,
+      "lr_weight": 0.0
+    }
+  ],
+  "dataset_summary": {
+    "total_matches": 1090,
+    "seasons_covered": "2008-2024",
+    "target_season": 2026
+  }
+}
